@@ -1,0 +1,31 @@
+.Navbar {
+  height: 60px;
+  background-color: #ca90c6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .search-form {
+    .search-bar {
+      background-color: #966b94;
+      color: white;
+      border: none;
+      padding: 10px;
+      padding-left: 40px;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1.3rem;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    .fa-search {
+      transform: translate(30px, 0) scale(1.2);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus-within .fa-search {
+      color: rgba(255, 255, 255);
+      transition: all 0.2s;
+    }
+  }
+}
