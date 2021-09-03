@@ -14,24 +14,28 @@ function App() {
         params: {
           q: location,
           appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-        },
-      }
-    );
-    const coord = locationResponse.data.coord;
-
-    const weatherReponse = await axios.get(
-      'https://api.openweathermap.org/data/2.5/onecall',
-      {
-        params: {
-          ...coord,
-          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-          lang: 'es',
           units: 'metric',
         },
       }
     );
 
-    setData(weatherReponse.data);
+    const coord = locationResponse.data.coord;
+
+    const weatherResponse = await axios.get(
+      'https://api.openweathermap.org/data/2.5/onecall',
+      {
+        params: {
+          ...coord,
+          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
+          units: 'metric',
+        },
+      }
+    );
+
+    setData({
+      locationInfo: locationResponse.data,
+      futureWeather: weatherResponse.data,
+    });
   };
 
   return (

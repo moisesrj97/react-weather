@@ -10,6 +10,7 @@ const Navbar = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.handleSearch(location);
+    setLocation('');
   };
 
   return (
