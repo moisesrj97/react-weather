@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.scss';
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const [location, setLocation] = useState('');
+
+  const handleInputChange = (evt) => {
+    setLocation(evt.target.value);
+  };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    props.handleSearch(location);
+  };
+
   return (
     <div className='Navbar'>
-      <form className='search-form'>
-        <i class='fas fa-search'></i>
+      <form className='search-form' onSubmit={handleSubmit}>
+        <i className='fas fa-search'></i>
         <input
-          class='search-bar'
+          className='search-bar'
           type='text'
           placeholder='Enter a location...'
+          onChange={handleInputChange}
+          value={location}
         ></input>
       </form>
     </div>
