@@ -18,16 +18,17 @@ const Main = (props) => {
     const sunset = new Date(locationInfo.sys.sunset * 1000);
 
     const sunriseFix =
-      sunrise.getUTCHours() +
-      locationInfo.timezone / 3600 +
+      (sunrise.getUTCHours() + locationInfo.timezone / 3600)
+        .toString()
+        .padStart(2, '0') +
       ':' +
-      sunrise.getUTCMinutes();
+      sunrise.getUTCMinutes().toString().padStart(2, '0');
     const sunsetFix =
-      sunset.getUTCHours() +
-      locationInfo.timezone / 3600 +
+      (sunset.getUTCHours() + locationInfo.timezone / 3600)
+        .toString()
+        .padStart(2, '0') +
       ':' +
-      sunset.getUTCMinutes();
-
+      sunset.getUTCMinutes().toString().padStart(2, '0');
     return (
       <div className='Main'>
         <div className='main-content'>
