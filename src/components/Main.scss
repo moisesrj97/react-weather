@@ -146,3 +146,7 @@ hr {
   border-width: 1px;
   width: 100%;
 }
+.city-temp-forecast {
+  @include flex-center-row();
+  flex-wrap: wrap;
+}

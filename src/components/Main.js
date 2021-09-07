@@ -181,7 +181,73 @@ const Main = (props) => {
               </div>
             </div>
           </div>
-          <div className='terciary-info'></div>
+          <hr></hr>
+          <div className='terciary-info'>
+            <h4>7 days forecast</h4>
+            {futureWeather.daily.map((e, index) => {
+              const sunrise = new Date(e.sunrise * 1000);
+              const sunset = new Date(e.sunset * 1000);
+
+              const sunriseFix =
+                (sunrise.getUTCHours() + locationInfo.timezone / 3600)
+                  .toString()
+                  .padStart(2, '0') +
+                ':' +
+                sunrise.getUTCMinutes().toString().padStart(2, '0');
+              const sunsetFix =
+                (sunset.getUTCHours() + locationInfo.timezone / 3600)
+                  .toString()
+                  .padStart(2, '0') +
+                ':' +
+                sunset.getUTCMinutes().toString().padStart(2, '0');
+              return (
+                <div className='basic-info'>
+                  <h1 className='city-name'>
+                    {new Date(e.dt * 1000).getDate()}/
+                    {new Date(e.dt * 1000).getMonth() + 1}
+                  </h1>
+                  <p>{e.dt}</p>
+                  <div className='city-temp-forecast'>
+                    <p> Day: {e.temp.day}ºC</p>
+                    <p> Evening: {e.temp.eve}ºC</p>
+                    <p> Morning: {e.temp.morn}ºC</p>
+                    <p> Night: {e.temp.night}ºC</p>
+                    <p className='min-max'>
+                      Min/Max: {e.temp.min}ºC/
+                      {e.temp.max}ºC
+                    </p>
+                    <h5 className='current-feeling'>Feeling:</h5>
+                    <p>Day: {e.feels_like.day}</p>
+                    <p>Evening: {e.feels_like.eve}</p>
+                    <p>Morning: {e.feels_like.morn}</p>
+                    <p>Night: {e.feels_like.night}</p>
+                  </div>
+                  <div className='icon-info'>
+                    <img
+                      className='climate-icon'
+                      src={`https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png`}
+                      alt={e.weather[0].main}
+                      title={e.weather[0].main}
+                    />
+                    <i className='fas fa-tint'></i>
+                    <span className='humidity-data' title='Humidity'>
+                      {e.humidity}%
+                    </span>
+                  </div>
+                  <div className='time-info-container'>
+                    <div className='time-info-item'>
+                      <i className='far fa-sun' title='Sunrise'></i>
+                      <span className='humidity-data'>{sunriseFix}</span>
+                    </div>
+                    <div className='time-info-item'>
+                      <i className='far fa-moon' title='Sunset'></i>
+                      <span className='humidity-data'>{sunsetFix}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
