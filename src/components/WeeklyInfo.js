@@ -38,7 +38,7 @@ const WeeklyInfo = (props) => {
             }
             key={index}
           >
-            <div>
+            <div className='basic-display'>
               <h1 className='city-name'>
                 {new Date(e.dt * 1000).getDate().toString().padStart(2, '0')}/
                 {(new Date(e.dt * 1000).getMonth() + 1)
