@@ -1,0 +1,32 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center();
+  flex-direction: column;
+}
+
+@mixin flex-center-row {
+  @include flex-center();
+  flex-direction: row;
+}
+
+.hourly-prediction {
+  @include flex-center-column();
+  .hourly-forecast {
+    @include flex-center-column();
+    .hourly-item--active {
+      @include flex-center-column();
+      h3 {
+        text-align: center;
+      }
+    }
+    .hourly-item--hidden {
+      @include flex-center-column();
+      display: none;
+    }
+  }
+}

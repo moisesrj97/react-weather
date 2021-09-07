@@ -25,114 +25,8 @@
     box-shadow: 32px 32px 64px #bebebe, -32px -32px 64px #ffffff;
     width: 80%;
     padding: 15px;
-    margin-top: 40px;
-    .city-name {
-      color: #30222f;
-    }
-    .basic-info {
-      @include flex-center();
-      justify-content: space-around;
-      width: 100%;
-      width: 75%;
-      .city-temp {
-        font-size: 1.3rem;
-        margin: 0 20px;
-        text-align: center;
-        p {
-          margin: 0;
-        }
-        .current-temp {
-          margin: 5px;
-          font-weight: bold;
-        }
-        .min-max {
-          font-size: 0.9rem;
-          margin: 3px;
-        }
-        .current-feeling {
-          font-size: 0.9rem;
-        }
-      }
-      .icon-info {
-        @include flex-center-row();
-        margin-right: 5px;
-        .humidity-data {
-          margin-left: 5px;
-        }
-      }
-      .climate-icon {
-        filter: drop-shadow(5px 5px 5px #222);
-      }
-      .climate-text {
-        text-align: center;
-        margin: 0;
-      }
-      .time-info-container {
-        @include flex-center-row();
-        .time-info-item {
-          @include flex-center-column();
-          margin: 0 10px;
-          i {
-            font-size: 2rem;
-            margin-bottom: 5px;
-          }
-        }
-      }
-    }
-    .next-hour-prediction {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h4 {
-        margin: 10px;
-        padding: 0;
-      }
-    }
+    margin: 40px 0;
 
-    .next-hour-items {
-      display: flex;
-      flex-wrap: wrap;
-      .next-hour-item {
-        margin: 5px;
-        display: none;
-
-        h3,
-        p {
-          text-align: center;
-          margin: 0;
-          padding: 0;
-        }
-        &--active {
-          display: block;
-          h3,
-          p {
-            text-align: center;
-          }
-        }
-      }
-    }
-
-    .hourly-prediction {
-      @include flex-center-column();
-    }
-
-    .hourly-forecast {
-      @include flex-center-column();
-      .hourly-item {
-        @include flex-center-column();
-        display: none;
-        h3 {
-          text-align: center;
-        }
-      }
-      .hourly-item--active {
-        @include flex-center-column();
-        display: block;
-        h3 {
-          text-align: center;
-        }
-      }
-    }
     .secondary-info {
       @include flex-center-row();
       width: 100%;
@@ -145,8 +39,4 @@ hr {
   color: beige;
   border-width: 1px;
   width: 100%;
-}
-.city-temp-forecast {
-  @include flex-center-row();
-  flex-wrap: wrap;
 }

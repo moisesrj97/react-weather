@@ -1,0 +1,38 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center();
+  flex-direction: column;
+}
+
+@mixin flex-center-row {
+  @include flex-center();
+  flex-direction: row;
+}
+
+.next-hour-prediction {
+  @include flex-center-column();
+  h4 {
+    margin: 10px;
+    padding: 0;
+  }
+  .next-hour-items {
+    .next-hour-item {
+      &--active {
+        margin: 5px;
+        h3,
+        p {
+          text-align: center;
+        }
+      }
+
+      &--hidden {
+        display: none;
+      }
+    }
+  }
+}

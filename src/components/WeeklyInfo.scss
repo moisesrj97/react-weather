@@ -1,0 +1,81 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center();
+  flex-direction: column;
+}
+
+@mixin flex-center-row {
+  @include flex-center();
+  flex-direction: row;
+}
+
+.terciary-info {
+  @include flex-center-column();
+  width: 100%;
+  .basic-info-forecast {
+    &--hidden {
+      display: none;
+    }
+    &--active {
+      @include flex-center();
+      justify-content: space-around;
+      width: 100%;
+      .city-temp {
+        font-size: 1.3rem;
+        margin: 0 20px;
+        text-align: center;
+        p {
+          margin: 0;
+        }
+        .current-temp {
+          margin: 5px;
+          font-weight: bold;
+        }
+        .min-max {
+          font-size: 0.9rem;
+          margin: 3px;
+        }
+        .current-feeling {
+          font-size: 0.9rem;
+        }
+      }
+      .icon-info {
+        @include flex-center-row();
+        margin-right: 5px;
+        .humidity-data {
+          margin-left: 5px;
+        }
+      }
+      .climate-icon {
+        filter: drop-shadow(5px 5px 5px #222);
+      }
+      .climate-text {
+        text-align: center;
+        margin: 0;
+      }
+      .time-info-container {
+        @include flex-center-row();
+        .time-info-item {
+          @include flex-center-column();
+          margin: 0 10px;
+          i {
+            font-size: 2rem;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .city-temp-forecast {
+        @include flex-center-row();
+      }
+
+      .city-temp-forecast-feeling {
+        margin-left: 10px;
+      }
+    }
+  }
+}
