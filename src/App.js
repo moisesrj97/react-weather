@@ -8,34 +8,38 @@ function App() {
   const [data, setData] = useState({});
 
   const getWeatherData = async (location) => {
-    const locationResponse = await axios.get(
-      'https://api.openweathermap.org/data/2.5/weather',
-      {
-        params: {
-          q: location,
-          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-          units: 'metric',
-        },
-      }
-    );
+    try {
+      const locationResponse = await axios.get(
+        'https://api.openweathermap.org/data/2.5/weather',
+        {
+          params: {
+            q: location,
+            appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
+            units: 'metric',
+          },
+        }
+      );
 
-    const coord = locationResponse.data.coord;
+      const coord = locationResponse.data.coord;
 
-    const weatherResponse = await axios.get(
-      'https://api.openweathermap.org/data/2.5/onecall',
-      {
-        params: {
-          ...coord,
-          appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
-          units: 'metric',
-        },
-      }
-    );
+      const weatherResponse = await axios.get(
+        'https://api.openweathermap.org/data/2.5/onecall',
+        {
+          params: {
+            ...coord,
+            appid: process.env.REACT_APP_OPENWEATHERMAP_API_KEY,
+            units: 'metric',
+          },
+        }
+      );
 
-    setData({
-      locationInfo: locationResponse.data,
-      futureWeather: weatherResponse.data,
-    });
+      setData({
+        locationInfo: locationResponse.data,
+        futureWeather: weatherResponse.data,
+      });
+    } catch (e) {
+      setData({ error: 'Place not found' });
+    }
   };
 
   return (

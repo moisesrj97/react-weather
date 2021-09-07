@@ -32,6 +32,7 @@ const NextTwoDays = (props) => {
                   ? 'hourly-item--active'
                   : 'hourly-item--hidden'
               }
+              key={index}
             >
               <h3>
                 {hour}:{minutes} {plusDays > 0 ? `+${plusDays}` : null}

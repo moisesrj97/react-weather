@@ -25,7 +25,17 @@ const Main = (props) => {
     setSelectedDay(evt.target.value);
   };
 
-  if (Object.keys(weatherData).length === 0) {
+  if (Object.keys(weatherData).length === 1) {
+    return (
+      <div className='Main'>
+        <h1>Okay, this is embarrassing</h1>
+        <h2>
+          We couldn´t find the locality you´re looking for. Are you sure it´s
+          spelled correctly?
+        </h2>
+      </div>
+    );
+  } else if (Object.keys(weatherData).length === 0) {
     return (
       <div className='Main'>
         <h1>Welcome to React Weather</h1>

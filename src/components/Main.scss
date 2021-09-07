@@ -31,6 +31,7 @@
       @include flex-center-row();
       width: 100%;
       justify-content: space-around;
+      flex-wrap: wrap;
     }
   }
 }

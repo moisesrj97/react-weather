@@ -31,6 +31,7 @@ const NextHour = (props) => {
                   ? 'next-hour-item--active'
                   : 'next-hour-item--hidden'
               }
+              key={index}
             >
               <h3 key={index}>
                 {hour.toString().padStart(2, '0')}:
