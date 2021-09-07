@@ -1,10 +1,20 @@
+import { useState } from 'react';
 import './Main.scss';
 
 const Main = (props) => {
   const { weatherData } = props;
   const { locationInfo, futureWeather } = weatherData;
 
-  console.log(locationInfo);
+  const [selectedMinute, setSelectedMinute] = useState('0');
+  const [selectedHour, setSelectedHour] = useState('0');
+
+  const handleMinuteSlider = (evt) => {
+    setSelectedMinute(evt.target.value);
+  };
+
+  const handleHourSlider = (evt) => {
+    setSelectedHour(evt.target.value);
+  };
 
   if (Object.keys(weatherData).length === 0) {
     return (
@@ -69,6 +79,109 @@ const Main = (props) => {
               </div>
             </div>
           </div>
+          <hr></hr>
+          <div className='secondary-info'>
+            <div className='next-hour-prediction'>
+              <h4>Next hour precipitations</h4>
+              <input
+                type='range'
+                min='0'
+                max='60'
+                defaultValue='0'
+                onChange={handleMinuteSlider}
+                onTouchMove={handleMinuteSlider}
+              ></input>
+              <div className='next-hour-items'>
+                {futureWeather.minutely.map((e, index) => {
+                  const date = new Date();
+                  let hour = date.getUTCHours() + locationInfo.timezone / 3600;
+                  let minutes = date.getUTCMinutes() + index + 1;
+
+                  if (minutes > 59) {
+                    hour++;
+                    minutes -= 60;
+                  }
+
+                  return (
+                    <div
+                      className={
+                        index == selectedMinute
+                          ? 'next-hour-item--active'
+                          : 'next-hour-item'
+                      }
+                    >
+                      <h3 key={index}>
+                        {hour.toString().padStart(2, '0')}:
+                        {minutes.toString().padStart(2, '0')}
+                      </h3>
+                      <p>{e.precipitation}mm/m2</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className='hourly-prediction'>
+              <h4>24h forecast</h4>
+              <input
+                type='range'
+                min='0'
+                max='47'
+                defaultValue='0'
+                onChange={handleHourSlider}
+                onTouchMove={handleHourSlider}
+              ></input>
+              <div class='hourly-forecast'>
+                {futureWeather.hourly.map((e, index) => {
+                  const date = new Date();
+                  let hour =
+                    date.getUTCHours() +
+                    locationInfo.timezone / 3600 +
+                    index +
+                    1;
+                  let minutes = date.getUTCMinutes();
+
+                  while (hour > 24) {
+                    hour -= 24;
+                  }
+
+                  return (
+                    <div
+                      className={
+                        index == selectedHour
+                          ? 'hourly-item--active'
+                          : 'hourly-item'
+                      }
+                    >
+                      <h3>
+                        {hour}:{minutes}
+                      </h3>
+                      <div className='basic-info'>
+                        <div className='city-temp' key={index}>
+                          <p className='current-temp'>{e.temp}ºC</p>
+                          <p className='current-feeling'>
+                            Feeling: {e.feels_like}ºC
+                          </p>
+                        </div>
+                        <div className='icon-info'>
+                          <img
+                            className='climate-icon'
+                            src={`https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png`}
+                            alt={e.weather[0].main}
+                            title={e.weather[0].main}
+                          />
+                          <i className='fas fa-tint'></i>
+                          <span className='humidity-data' title='Humidity'>
+                            {e.humidity}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className='terciary-info'></div>
         </div>
       </div>
     );
